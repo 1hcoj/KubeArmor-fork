@@ -128,6 +128,7 @@ func readCmdLineParams() {
 
 	debugB := flag.Bool(ConfigDebug, false, "Enable/Disable pushing KubeArmor debug logs over gRPC. NOTE: Set environment DEBUG=true to configure stdout debug logging")
 
+	// comandline flag 지정
 	defaultFilePosture := flag.String(ConfigDefaultFilePosture, "audit", "configuring default enforcement action in global file context {allow|audit|block}")
 	defaultNetworkPosture := flag.String(ConfigDefaultNetworkPosture, "audit", "configuring default enforcement action in global network context {allow|audit|block}")
 	defaultCapabilitiesPosture := flag.String(ConfigDefaultCapabilitiesPosture, "audit", "configuring default enforcement action in global capability context {allow|audit|block}")
