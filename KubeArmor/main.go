@@ -35,6 +35,8 @@ func init() {
 }
 
 func main() {
+	// KubeArmor가 root 권한으로 실행되었는지 검사하여 root 권한이 아닌 경우 실행 종료
+	// euid = effective user id
 	if os.Geteuid() != 0 {
 		if os.Getenv("KUBEARMOR_UBI") == "" {
 			kg.Printf("Need to have root privileges to run %s\n", os.Args[0])
@@ -59,13 +61,14 @@ func main() {
 
 		}
 	}
-
+	// Abs는 절대 경로 반환
+	// os.Args[0] == 프로그램 실행 시 첫 번째 매개변수
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
 		kg.Err(err.Error())
 		return
 	}
-
+	// working directory 변경
 	if err := os.Chdir(dir); err != nil {
 		kg.Err(err.Error())
 		return
